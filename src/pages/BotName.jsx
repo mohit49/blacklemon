@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Card from "../components/Card/card";
 import { Pause, Config, ViewIcon } from "../icons/icons";
-import Button from "../uielement/button";
+import Button from "../uielement/Button";
 import tradigImg from "../assets/trading.png"
 import DropDownSelect from "../uielement/DropDownSelect";
 import InputType from "../uielement/InputType";

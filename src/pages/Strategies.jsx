@@ -3,7 +3,7 @@ import Card from "../components/Card/card";
 import Notes from "../components/Notes/Notes";
 import DropDownSelect from "../uielement/DropDownSelect";
 import InputType from "../uielement/InputType";
-import Button from "../uielement/button";
+import Button from "../uielement/Button";
 import stratigy from "../assets/BlackLemon_Strategies.png"
 import PopOut from "../uielement/PopOut";
 import StrategiesDetails from '../components/StratigyDetails/StratigyDetails';

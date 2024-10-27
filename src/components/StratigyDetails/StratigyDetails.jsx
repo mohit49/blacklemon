@@ -2,7 +2,7 @@ import Card from "../Card/card";
 
 import { DigoIcon } from "../../icons/icons";
 import stratigy from "../../assets/BlackLemon_Strategies.png"
-import Button from "../../uielement/button";
+import Button from "../../uielement/Button";
 import chtImg from "../../assets/chat.png"
 function StrategiesDetails() {
   const options = [

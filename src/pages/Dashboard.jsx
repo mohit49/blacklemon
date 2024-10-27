@@ -1,7 +1,7 @@
 import Card from "../components/Card/card";
 import Notes from "../components/Notes/Notes";
 import { Info, Eth, Tether, Sui ,Aptus } from "../icons/icons";
-import Button from "../uielement/button";
+import Button from "../uielement/Button";
 import CandleChart from "../components/CandleChart/CandleChart";
 function Dashboard() {
   const InfoIco = Info;

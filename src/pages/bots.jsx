@@ -2,7 +2,7 @@
 import React, {useState} from 'react'
 import Card from "../components/Card/card";
 import InputType from "../uielement/InputType";
-import Button from "../uielement/button";
+import Button from "../uielement/Button";;
 import { SettingIcon , ViewIcon, PlayIcon} from "../icons/icons";
 function Bots() {
   const [buttonOpen , setButtonOpen] = useState(false)

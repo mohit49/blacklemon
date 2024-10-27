@@ -1,5 +1,5 @@
 import "./App.css";
-import Header from "./include/header/header";
+import Header from "./include/Header/Header";
 
 
 import Main from "./include/Main/Main";
