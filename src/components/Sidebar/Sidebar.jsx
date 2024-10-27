@@ -20,9 +20,9 @@ function Sidebar() {
       link: "/bots",
       submenu: [
         {
-          name: "New Bot",
+          name: "My First Bot",
           icon: "",
-          link: "bot/new-bot",
+          link: "/my-first-bot",
         },
       ],
     },

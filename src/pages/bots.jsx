@@ -1,16 +1,15 @@
+// eslint-disable-next-line no-unused-vars
+import React, {useState} from 'react'
 import Card from "../components/Card/card";
-import Notes from "../components/Notes/Notes";
-import DropDownSelect from "../uielement/DropDownSelect";
 import InputType from "../uielement/InputType";
 import Button from "../uielement/button";
-import stratigy from "../assets/BlackLemon_Strategies.png"
-import { DigoIcon ,SettingIcon , ViewIcon, PlayIcon} from "../icons/icons";
+import { SettingIcon , ViewIcon, PlayIcon} from "../icons/icons";
 function Bots() {
-  const options = [
-    { value: "1", label: "Scalping" },
-    { value: "2", label: "Moving averages" },
-    { value: "3", label: "Day trading crypto" },
-  ];
+  const [buttonOpen , setButtonOpen] = useState(false)
+
+  const handleClick =()=>{
+    setButtonOpen(!buttonOpen)
+  }
 
   return (
     <div className="bots">
@@ -52,13 +51,14 @@ function Bots() {
 <div className="bot-feild">
 <InputType label="Trading Size" type="text" icon="false" placeholder="e.g.1.0"/>
 <InputType label="Minimum Profitability" type="text" icon="false" placeholder="e.g.0.002"/>
-<div className="advance-set"><SettingIcon/> <p>Advanced Options</p></div>
+<div className="advance-set" onClick={handleClick}><SettingIcon/> <p>Advanced Options</p></div>
 </div>
-
-<div className="submit-con">
+{console.log(buttonOpen)}
+{buttonOpen && <div className="submit-con">
 <Button buttonType="link" className="default-btn"><ViewIcon/>Paper Trade</Button>
 <Button buttonType="link" className="default-btn"><PlayIcon/>Live Trade</Button>
-</div>
+</div>}
+
 
           </div>
         </Card>

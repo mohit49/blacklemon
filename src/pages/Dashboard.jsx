@@ -105,7 +105,7 @@ function Dashboard() {
                     <p>$84116.60</p>
                 </div>
                 <div className="token">
-                    <span><div className="icon-blu white-bg"><AptusIco/></div><p>Aptus(APT)</p></span>
+                    <span><div className="icon-blu white-bg"><AptusIco/></div><p>Aptos(APT)</p></span>
                     <p className="amount">32.657 ETH</p>
                     <p>$84116.60</p>
                 </div>

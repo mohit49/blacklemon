@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef  } from 'react';
 import { SelectArrow } from "../icons/icons";
 const DropDownSelect = ({ options }) => {

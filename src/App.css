@@ -256,10 +256,20 @@ main {
   display: flex;
   align-items: center;
   gap: 10px;
+  max-width: fit-content;
+}
+.default-btn.pink {
+  background: #FFB2B3;
+  color: #820202;
 }
 .default-btn:hover {
   outline: 2px ;
   outline: 5px rgba(254, 242, 0, 0.4) solid;
+}
+
+.default-btn.pink:hover {
+  outline: 2px ;
+  outline: 5px rgba(249, 151, 171, 0.4) solid;
 }
 .table-bar {
   display: flex;
@@ -356,7 +366,9 @@ main {
 .grapdh-img img {
   width: 100%;
 }
-
+.stratiges {
+  position: relative;
+}
 .stratiges h2 {
  display: flex;
  flex-direction: row;
@@ -623,6 +635,248 @@ margin-top: 20px;
 .advance-set p{
   color: #ffffff;
 }
+
+
+.live-trade {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  margin-left: 10px;
+}
+.live-trade p {
+  margin: 0;
+  font-size: 15px;
+  color: #70FFC6;
+}
+.dashboard .live-trade span {
+  display: inline-block;
+  gap: 0;
+}
+.circle-live {
+  position: relative;
+ align-items: center;
+ display: flex;
+  width:15px;
+  height: 15px;
+
+  &:before {
+    content: "";
+    position: relative;
+    display: block;
+    width: 250%;
+    height: 250%;
+    box-sizing: border-box;
+    margin-left: -75%;
+    margin-top: -75%;
+    border-radius: 45px;
+    background-color: #70FFC6;
+    animation: pulse 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #70FFC6;
+    border-radius: 50px;
+    animation: circle 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+  }
+}
+.top-trade-con {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.bot-dynamic {
+  width: 100%;
+  position: relative;
+}
+
+.top-trade-con h2 {
+  margin-bottom: 0;
+}
+
+.top-trade-con .right-btn {
+  display: flex;
+  gap: 15px;
+}
+.startigies-name {
+  margin: 10px 0px 30px;
+  color: #B2B2B2;
+}
+.startigies-name span {
+  color: #ffffff;
+}
+.bot-name-ui .table-bar .head p {
+  color: #ffffff;
+  font-weight: 600;
+}
+.bot-name-ui .bl-card {
+  padding: 0;
+}
+.bot-name-ui .bl-card h3 {
+  padding: 10px 15px;
+}
+.bot-name-ui .table-bar .head {
+  padding: 10px 15px;
+}
+.bot-name-ui .table-bar .head.heighlighted {
+  background-color: #514D00;
+  border: none;
+}
+.bot-name-ui .table-bar .head.data div {
+  margin-bottom: 10px;
+}
+.trading-card {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  
+}
+.trading-card .bl-card {
+  width: 100%;
+}
+.trading-card img {
+  width: 100%;
+  margin-top: 20px;
+}
+.trade-logs {
+  margin-top: 20px;
+}
+.stamps-container {
+  color: #FFFFFF;
+  text-wrap: unset;
+  display: grid;
+  grid-template-columns:  [row1-start] 25% [row1-end] 15% [third-line] auto [last-line];
+margin: 0 -30px;
+ 
+}
+
+.stamps-container div {
+  padding: 15px;
+}
+.stamps-container div {
+color: #ffffff;
+}
+.stamps-container .first-grid{
+background: #514D00;
+}
+.stamps-container .dull-color {
+  color: #808080;
+}
+
+.config-popin {
+  background: #FEF200;
+  padding: 15px;
+  border-radius: 10px;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+.config-popin .bl-card {
+  background: #FEF200;
+  padding: 0;
+}
+.config-popin .bot-breadcrumb ,.config-popin .bot-breadcrumb  span {
+  color: #000000;
+}
+.config-popin .bots .table-bar .head p {
+  color: #000000;
+}
+.config-popin .bots .table-bar .head {
+  border-color:#000000 ;
+}
+.config-popin .input-feild label p {
+  color: #000000;
+}
+.config-popin .heading-top {
+  color: #000000;
+}
+.config-popin .input-feild input {
+  outline-color: #000000;
+  color: #000000;
+}
+.config-popin .form-subhead {
+  color: #000000;
+}
+.config-popin .bot-form .feild-exchange .input-feild label {
+  outline-color: #000000;
+}
+.config-popin .bot-form .feild-exchange .input-feild label:has(> input:checked){
+  background-color: #000000;
+}
+.config-popin .default-btn {
+  background-color: #000000;
+  color: yellow;
+}
+.config-popin .default-btn svg path {
+  fill: yellow;
+}
+.config-popin  .advance-set p {
+  color: #000000;
+}
+
+.config-popin  .advance-set svg path {
+  stroke: #000000;
+}
+.back-drop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgb(0, 0, 0 , .9);
+}
+.stratiges-details.stratiges .table-tr .table-td .badge, .stratiges .table-tr .table-td  .badge,
+.stratiges-details.stratiges .table-tr .table-td .badge, .stratiges .table-tr .table-td  .badge2 {
+  background-color: #04040466;
+  width: 40px;
+  height: 40px;
+}
+.stratiges-details.stratiges .table-tr .table-td .details p {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+}
+.stratiges-details.stratiges .table-tr .table-td .details p:nth-child(2) {
+  font-size: 14px;
+  font-weight: 400;
+}
+.stratiges-details.stratiges .table-tr .table-td .discord {
+  background: #000000;
+  padding: 5px 15px;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(0.33);
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes circle {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+
 @media screen and (max-width: 1600px) {
   .blacklemon-app {
     width: 100%;
