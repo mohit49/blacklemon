@@ -1,7 +1,8 @@
 import { BrowserRouter as Router,  Link } from "react-router-dom";
 import { getImgURL } from "../../util/image-util";
+import { MenuIcon } from "../../icons/icons";
 
-function Header() {
+function Header({hendlmobilemenu}) {
 
 
   return (
@@ -13,6 +14,8 @@ function Header() {
                 <li><Link to="/community">Community</Link></li>
                 <li><Link to="/documentation">Documentation</Link></li>
             </ul>
+            <div className="mob-menu"> <Link onClick={hendlmobilemenu} itemType="button"><MenuIcon/></Link></div>
+           
            </nav>
     </header>
     </Router>

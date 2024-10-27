@@ -855,6 +855,9 @@ background: #514D00;
   border-radius: 10px;
   margin-left: 20px;
 }
+.mob-menu {
+  display: none;
+}
 @keyframes pulse {
   0% {
     transform: scale(0.33);
@@ -889,5 +892,55 @@ background: #514D00;
     padding: 0px 15px 0px 0px;
   }
 }
+@media screen and (max-width: 990px) {
+.side-bar{
+  display: none;
+}
+.dashboard {
+  width: 100%;
+  padding:0px 15px;
+}
+.mob-menu {
+  display: flex;align-items: center;
+}
+.mob-menu svg path {
+  fill: #ffffff;
+}
+.side-bar.open {
+  width: 80%;
+  display: block;
+}
+}
+@media screen and (max-width: 768px) {
+  .cards {
+    
+    grid-template-columns: repeat(1, 1fr);
+}
+header {
+  padding: 10px;
+}
+.end-menu {
+  display: none;
+}
+.submit-con {
+  width: 100%;
+}
+.feild-exchange {
+  flex-wrap: wrap;
+}
+.bot-form .feild-exchange .input-feild {
+  width: 150px;
+}
+.bot-form .bot-feild {
+  flex-wrap: wrap;
+}
+.top-trade-con {
+  flex-direction: column;
+}
+.top-trade-con .right-btn {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+  }
 
 

@@ -6,7 +6,7 @@ import {
   Market,
   Setting,
 } from "../../icons/icons";
-function Sidebar() {
+function Sidebar({menuState}) {
   const IconStratiges = StatigesIcon;
   const sideMenu = [
     {
@@ -43,7 +43,7 @@ function Sidebar() {
     },
   ];
   return (
-    <div className="side-bar">
+    <div className={`side-bar ${menuState ? "open" :''}`}>
       <ul>
         {sideMenu.map((ele, ind) =>
           !ele?.submenu ? (

@@ -6,11 +6,11 @@ import Strategies from '../../pages/Strategies';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Bots from '../../pages/bots';
 import BotName from '../../pages/BotName';
-function Main() {
+function Main({menuState}) {
   return (
   <main>
     <BrowserRouter>
-    <Sidebar/>
+  <Sidebar menuState={menuState}/>
     <div className="dashboard">
     <Routes>
    
