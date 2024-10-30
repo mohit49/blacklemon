@@ -11,6 +11,7 @@ body {
   place-items:top;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
+  overflow-x: hidden;
 }
 
 #root {
@@ -899,6 +900,7 @@ background: #514D00;
 .dashboard {
   width: 100%;
   padding:0px 15px;
+  overflow: hidden;
 }
 .mob-menu {
   display: flex;align-items: center;
@@ -910,11 +912,28 @@ background: #514D00;
   width: 80%;
   display: block;
 }
+.cards.card-full {
+  overflow-x: scroll;
+}
 }
 @media screen and (max-width: 768px) {
+  .bl-card.full {
+   
+  }
+  .dashboard .heading-top span{
+    flex-direction: column;
+  }
+  .stratiges h2 {
+    flex-direction: column;
+    gap: 15px;
+  }
   .cards {
     
     grid-template-columns: repeat(1, 1fr);
+}
+.stamps-container {
+  width: 100%;
+  overflow-x: scroll;
 }
 header {
   padding: 10px;
