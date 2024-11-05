@@ -9,10 +9,16 @@ import {
 function Sidebar({menuState}) {
   const IconStratiges = StatigesIcon;
   const sideMenu = [
+   
     {
       name: "Dashboard",
       icon: <HomeIcon />,
       link: "/",
+    },
+    {
+      name: "🔑 Credentials",
+     
+      link: "/credentials",
     },
     {
       name: "Bots",

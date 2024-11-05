@@ -6,6 +6,7 @@ import Strategies from '../../pages/Strategies';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Bots from '../../pages/bots';
 import BotName from '../../pages/BotName';
+import Credentials from '../../pages/Credentials';
 function Main({menuState}) {
   return (
   <main>
@@ -13,7 +14,7 @@ function Main({menuState}) {
   <Sidebar menuState={menuState}/>
     <div className="dashboard">
     <Routes>
-   
+    <Route exact path="/credentials" element={<Credentials />} />
   <Route exact path="/" element={<Dashboard />} />
   <Route exact path="/strategies" element={<Strategies />} />
   <Route  path="/bots" element={<Bots/>} >

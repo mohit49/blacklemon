@@ -881,6 +881,12 @@ background: #514D00;
   }
 }
 
+.credentials ul {
+  display: flex;
+  flex-direction: column;
+
+}
+
 @media screen and (max-width: 1600px) {
   .blacklemon-app {
     width: 100%;
