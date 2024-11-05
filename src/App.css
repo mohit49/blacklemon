@@ -859,6 +859,7 @@ background: #514D00;
 .mob-menu {
   display: none;
 }
+
 @keyframes pulse {
   0% {
     transform: scale(0.33);
@@ -883,9 +884,57 @@ background: #514D00;
 
 .credentials ul {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 50px;
+  padding: 0;
+  margin: 0;
+  margin-top: 20px;
+  list-style:none;
+  flex-wrap: wrap;
+
 
 }
+.credentials {
+  grid-template-columns: repeat(1, 1fr);
+}
+.credentials ul li ul {
+  margin-top: 10px;
+  padding-left: 5px;
+  list-style: none;
+  margin-left: 0px;
+}
+.credentials ul li ul li {
+  list-style:circle;
+  margin-left: 20px;
+ 
+}
+.available-accounts {
+  width: 80%;
+}
+.available-accounts li {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+}
+.available-accounts .input-feild {
+  width: 100%;
+}
+.available-accounts .input-feild label {
+  width: 100%;
+}
+.credentials .dropdown-header {
+  color: #ffffff;
+}
+.credentials .custom-dropdown {
+  margin-top: 10px;
+}
+.credentials .custom-dropdown .dropdown-option {
+  color: #ffffff;
+}
+.credentials .custom-dropdown .dropdown-option {
+  &:hover {
+    color: #000000;
+  }}
 
 @media screen and (max-width: 1600px) {
   .blacklemon-app {

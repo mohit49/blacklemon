@@ -12,11 +12,23 @@ export const listAccounts = async () => {
   }
 };
 
-
-
-export const createUser = async (userData) => {
+// Define functions to make API requests
+export const getCredentials = async (account) => {
   try {
-    const response = await axiosInstance.post('/users', userData);
+    const response = await axiosInstance.get(`/list-credentials/${account}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw error; // Optionally, handle specific errors
+  }
+};
+
+
+
+
+export const userCredentials = async (userData) => {
+  try {
+    const response = await axiosInstance.post('/list-credentials/master_account', userData);
     return response.data;
   } catch (error) {
     console.error('Error creating user:', error);
