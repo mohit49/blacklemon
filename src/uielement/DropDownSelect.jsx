@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef  } from 'react';
 import { SelectArrow } from "../icons/icons";
-const DropDownSelect = ({ options }) => {
+const DropDownSelect = ({ options, setSelectedVal }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const dropdownRef = useRef(null);
@@ -11,6 +11,7 @@ const DropDownSelect = ({ options }) => {
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
+    setSelectedVal(option)
     setIsOpen(false);
   };
 

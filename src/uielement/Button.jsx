@@ -6,7 +6,7 @@ function Button(props) {
       <Link to="" className={props?.className}>
       {props?.children}
       </Link>
-    ) : <button onClick={props.handler} className={props?.className}>
+    ) : <button disabled={props?.disabled} onClick={props?.handler} className={props?.className}>
     {props?.children}
     </button>
     

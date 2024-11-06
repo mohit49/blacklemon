@@ -259,6 +259,10 @@ main {
   gap: 10px;
   max-width: fit-content;
 }
+.default-btn:disabled {
+  background: gray;
+  outline: none !important;
+}
 .default-btn.pink {
   background: #FFB2B3;
   color: #820202;
@@ -859,6 +863,19 @@ background: #514D00;
 .mob-menu {
   display: none;
 }
+.message-popup {
+  padding: 15px 15px;
+  background: green;
+  color: #FFFFFF;
+  width: 500px;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  border-radius: 10px;
+}
+.message-popup.error{
+  background: red;
+}
 
 @keyframes pulse {
   0% {
@@ -910,6 +927,10 @@ background: #514D00;
 }
 .available-accounts {
   width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: end;
 }
 .available-accounts li {
   color: #ffffff;
@@ -917,7 +938,7 @@ background: #514D00;
   font-weight: bold;
 }
 .available-accounts .input-feild {
-  width: 100%;
+  width: auto;
 }
 .available-accounts .input-feild label {
   width: 100%;

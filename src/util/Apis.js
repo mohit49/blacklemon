@@ -26,9 +26,19 @@ export const getCredentials = async (account) => {
 
 
 
-export const userCredentials = async (userData) => {
+export const addAccount = async (accountname) => {
   try {
-    const response = await axiosInstance.post('/list-credentials/master_account', userData);
+    const response = await axiosInstance.post(`/add-account?account_name=${accountname}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating user:', error);
+    throw error;
+  }
+};
+
+export const delAccount = async (accountname) => {
+  try {
+    const response = await axiosInstance.post(`/delete-account?account_name=${accountname}`);
     return response.data;
   } catch (error) {
     console.error('Error creating user:', error);
