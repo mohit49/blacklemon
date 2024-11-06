@@ -8,7 +8,7 @@ function InputType(props) {
    // Handle change in input value
    const handleChange = (event) => {
     setInputValue(event.target.value);
-    props.onInputChange(event.target.value); 
+    props.onInputChange(event); 
     console.log('Input value changed:', event.target.value);
   };
   return (

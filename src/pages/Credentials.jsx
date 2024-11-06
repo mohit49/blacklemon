@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Card from "../components/Card/card";
-import { listAccounts, getCredentials, addAccount ,delAccount } from '../util/Apis';
+import { listAccounts, getCredentials, addAccount, delAccount, getConnector, connectKey } from '../util/Apis';
 import InputType from "../uielement/InputType";
 import DropDownSelect from "../uielement/DropDownSelect";
 import Button from '../uielement/Button';
@@ -10,14 +10,28 @@ function Credentials() {
   const [accounts, setAccounts] = useState(null);
   const [data, setUserData] = useState([]);
   const [selectData, setSelectData] = useState([]);
+  const [connectors, setConnectors] = useState([]);
   const [error, setError] = useState(null);
   const [popmsg, setPopmsg] = useState(null);
   const [account, setAccountAdd] = useState(null);
-  const [delAcc , setDelAcc] = useState(null);
+  const [delAcc, setDelAcc] = useState(null);
   const [loadingState, setLoadingState] = useState(null); // Track button loading state
-
+  const [selCon, setSelConnectors] = useState();
+  const [apiData, setApiCred] = useState({});
   function addAccnoutInput(val) {
-    setAccounts(val);
+    setAccounts(val.target.value);
+  }
+  function setApi(data) {
+    const input = data.target.parentElement.innerText,  // The dynamic key (e.g., 'revDate')
+      value = data.target.value;  // The value of that key (e.g., the value inputted)
+
+    // Remove any object with the same key and value from prevData
+    setApiCred(prevData => {
+      const { [input]: removed, ...rest } = prevData; // Destructure to remove the existing key
+
+      // Add the new key-value pair, preserving the other keys
+      return { ...rest, [input]: value };
+    });
   }
 
   useEffect(() => {
@@ -48,6 +62,22 @@ function Credentials() {
     fetchAccounts();
   }, [account]);
 
+  useEffect(() => {
+    const fetchConnectors = async () => {
+      const connectors = await getConnector(accounts);
+      setConnectors(prevData => [
+        ...prevData,
+        ...connectors.map(element => ({
+          value: element,
+          label: element,
+        }))
+      ]);
+    }
+
+    fetchConnectors();
+  }, []); // Empty dependency array to fetch once when the component mounts
+
+
   function addAccountMn() {
     const addAccounts = async () => {
       setLoadingState('add'); // Set loading state to 'add' button
@@ -71,6 +101,9 @@ function Credentials() {
 
   function selectedValue(data) {
     setDelAcc(data.value);
+  }
+  function selectedValueConnectors(data) {
+    setSelConnectors(data.value);
   }
 
   function deleteAccountMn() {
@@ -111,6 +144,28 @@ function Credentials() {
     }
   };
 
+  function addCredentials() {
+    const addconnector = async () => {
+      setLoadingState('connectKy'); // Set loading state to 'delete' button
+
+      try {
+        const connector = await connectKey(apiData, selCon, delAcc);
+        console.log(connector)
+        setLoadingState(null);
+        setError(false);
+        setPopmsg(connector.message);
+        setAccountAdd(true);
+      } catch (error) {
+        setError(true);
+        setPopmsg(error?.response?.data?.detail);
+      } finally {
+        setLoadingState(null); // Reset loading state
+      }
+    };
+
+    addconnector();
+  }
+
   return (
     <div>
       <h2 className="heading-top">Credentials</h2>
@@ -133,10 +188,10 @@ function Credentials() {
         <Card heading="Add Account" size="full">
           <div className="available-accounts">
             <InputType onInputChange={addAccnoutInput} label="New Account Name" type="text" icon="false" placeholder="Type the name for your bot" />
-            <Button 
+            <Button
               disabled={!accounts?.length}
-              buttonType="button" 
-              handler={addAccountMn} 
+              buttonType="button"
+              handler={addAccountMn}
               className="default-btn"
             >
               {loadingState === 'add' ? "Please Wait" : "Add Account"}
@@ -147,16 +202,49 @@ function Credentials() {
         <Card heading="Delete Account" size="full">
           <div className="available-accounts">
             {selectData.length > 0 ? <DropDownSelect setSelectedVal={selectedValue} options={selectData} /> : "No account to delete"}
-            <Button 
-              buttonType="button" 
-              handler={deleteAccountMn} 
+            <Button
+              buttonType="button"
+              handler={deleteAccountMn}
               className="default-btn"
             >
               {loadingState === 'delete' ? "Please Wait" : "Delete Account"}
             </Button>
           </div>
         </Card>
-        
+        <Card heading="Add Credentials" size="full">
+          <div className="available-accounts add-cred-method">
+
+            <div className='add-credentials'>
+              <h3>Select Account</h3>
+              {selectData.length > 0 ? <DropDownSelect setSelectedVal={selectedValue} options={selectData} /> : "No account to delete"}
+
+            </div>
+            <div className='add-credentials'>
+              <h3>Select Connectors</h3>
+              {selectData.length > 0 ? <DropDownSelect setSelectedVal={selectedValueConnectors} options={connectors} /> : "No account to delete"}
+
+            </div>
+
+
+          </div>
+          <div className="available-accounts add-cred-method add-cred-bot">
+            {delAcc && <p>Provide Configuration Map for <b>{selCon}</b></p>}
+
+            {selCon && <div className="bot-feild">
+              <InputType onInputChange={setApi} label={`${selCon}_api_key`} type="text" icon="false" placeholder="Api Key" />
+              <InputType onInputChange={setApi} label={`${selCon}_api_secret`} type="text" icon="false" placeholder="Api Secret" />
+
+            </div>}
+            <br />
+            {Object.keys(apiData).length > 1 && <Button
+              buttonType="button"
+              handler={addCredentials}
+              className="default-btn"
+            >
+              {loadingState === 'connectKy' ? "Please Wait" : "Add Credentials"}
+            </Button>}
+          </div>
+        </Card>
         {popmsg && <Popmsg className={error ? "error" : ""}>{popmsg}</Popmsg>}
       </div>
     </div>

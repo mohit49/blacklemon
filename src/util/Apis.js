@@ -23,12 +23,31 @@ export const getCredentials = async (account) => {
   }
 };
 
-
+// Define functions to make API requests
+export const getConnector = async () => {
+  try {
+    const response = await axiosInstance.get(`/available-connectors`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw error; // Optionally, handle specific errors
+  }
+};
 
 
 export const addAccount = async (accountname) => {
   try {
     const response = await axiosInstance.post(`/add-account?account_name=${accountname}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating user:', error);
+    throw error;
+  }
+};
+
+export const connectKey = async (apikey,connector,accountname) => {
+  try {
+    const response = await axiosInstance.post(`add-connector-keys/${accountname}/${connector}`,apikey);
     return response.data;
   } catch (error) {
     console.error('Error creating user:', error);
