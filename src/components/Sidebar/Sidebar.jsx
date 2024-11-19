@@ -21,14 +21,19 @@ function Sidebar({menuState}) {
       link: "/credentials",
     },
     {
+      name: "👨‍🏫 PMM Simple",
+     
+      link: "/ppm-simple",
+    },
+    {
       name: "Bots",
       icon: <BotIcon />,
       link: "/bots",
       submenu: [
         {
-          name: "My First Bot",
+          name: "Active Bots",
           icon: "",
-          link: "/my-first-bot",
+          link: "/active-bots",
         },
       ],
     },
@@ -43,9 +48,9 @@ function Sidebar({menuState}) {
       link: "/markets",
     },
     {
-      name: "Configuration",
+      name: "Configurations",
       icon: <Setting />,
-      link: "/configuration",
+      link: "/configurations",
     },
   ];
   return (

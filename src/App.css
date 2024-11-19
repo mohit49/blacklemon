@@ -52,6 +52,17 @@ header nav ul a {
 .side-bar ul li ul {
   display: none;
 }
+.bot-run .dropdown-header {
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+}
+.bot-run .dropdown-option {
+  color: #ffffff;
+  font-size: 14px;
+}
 .side-bar ul li:has(> a.active) {   background-color: #fef200;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -194,6 +205,20 @@ main {
   gap: 10px;
   grid-template-columns: repeat(2, 1fr);
   
+}.grid-three {
+  display: grid !important;
+  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+}
+.data-text {
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+}
+.grid-last {
+  text-align: right;
+  display: flex;
+  justify-content: end;
 }
 .cards.card-full {
   grid-template-columns: repeat(1, 1fr); 
@@ -258,7 +283,14 @@ main {
   align-items: center;
   gap: 10px;
   max-width: fit-content;
+  border: none;
 }
+.configurationbt {
+  display: flex;
+  flex-direction: row;
+  gap:20px;
+}
+
 .default-btn:disabled {
   background: gray;
   outline: none !important;
@@ -266,6 +298,10 @@ main {
 .default-btn.pink {
   background: #FFB2B3;
   color: #820202;
+}
+.default-btn.green {
+  background: green;
+  color: #ffffff;
 }
 .default-btn:hover {
   outline: 2px ;
@@ -918,6 +954,16 @@ background: #514D00;
     transform: scale(0.8);
   }
 }
+.bootconfigurtion table {
+  margin-top:20px;
+}
+.bootconfigurtion tr td {
+  color: #ffffff;
+  font-size:12px;
+  padding: 10px 5px;
+  border-right: 1px #141414 solid;
+}
+.bootconfigurtion table tr:nth-child(even) { background:#141414 }
 
 .credentials ul {
   display: flex;

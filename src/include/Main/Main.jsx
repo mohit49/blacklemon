@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Bots from '../../pages/bots';
 import BotName from '../../pages/BotName';
 import Credentials from '../../pages/Credentials';
+import PpmSimple from '../../pages/ppmSimple';
+import Configurations from '../../pages/Configurations';
 function Main({menuState}) {
   return (
   <main>
@@ -20,7 +22,9 @@ function Main({menuState}) {
   <Route  path="/bots" element={<Bots/>} >
  
   </Route>
-  <Route path="/my-first-bot" element={<BotName/>} />
+  <Route path="/ppm-simple" element={<PpmSimple/>} />
+  <Route path="/active-bots" element={<BotName/>} />
+  <Route path="/configurations" element={<Configurations/>} />
   </Routes>
   </div>
   </BrowserRouter>

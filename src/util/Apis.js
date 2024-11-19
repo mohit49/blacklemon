@@ -24,6 +24,48 @@ export const getCredentials = async (account) => {
 };
 
 // Define functions to make API requests
+export const allControllerGonfigs = async (account) => {
+  try {
+    const response = await axiosInstance.get(`/all-controller-configs`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw error; // Optionally, handle specific errors
+  }
+};
+
+
+// Define functions to make API requests
+export const listConfigScript = async (account) => {
+  try {
+    const response = await axiosInstance.get(`/list-scripts-configs`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw error; // Optionally, handle specific errors
+  }
+};
+
+export const listScripts = async (account) => {
+  try {
+    const response = await axiosInstance.get(`/list-scripts`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw error; // Optionally, handle specific errors
+  }
+};
+
+export const deleteConfigsApi = async (gonfigname) => {
+  try {
+    const response = await axiosInstance.post(`/delete-controller-config?config_name=${gonfigname}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating user:', error);
+    throw error;
+  }
+};
+// Define functions to make API requests
 export const getConnector = async () => {
   try {
     const response = await axiosInstance.get(`/available-connectors`);
@@ -84,3 +126,25 @@ export const deleteUser = async (id) => {
     throw error;
   }
 };
+
+
+export const createInstance = async (payload) => {
+  try {
+    const response = await axiosInstance.post(`/create-hummingbot-instance`, payload);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+};
+
+export const getActiveBot = async () => {
+  try {
+    const response = await axiosInstance.get(`/get-active-bots-status`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    throw error; // Optionally, handle specific errors
+  }
+};
+
