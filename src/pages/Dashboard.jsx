@@ -16,7 +16,7 @@ function Dashboard() {
   console.log('---------');
   console.log('dashboard', value);
   console.log('---------');
-  
+
   const InfoIco = Info;
   const EthIco = Eth;
   const TetherIco = Tether;
@@ -62,7 +62,13 @@ function Dashboard() {
       navigate('/login');
     }
   }, [navigate, token]);
+  let totalPrice = 0
+  totalPrice += value?.map((item) => {
+    item?.balance * item?.price
+  })
 
+  console.log('tota', totalPrice);
+  
   return (
     <div className="h-screen w-full">
       <h2 className="heading-top">Dashboard</h2>
@@ -92,28 +98,32 @@ function Dashboard() {
           </div>
           <Button handler={moveTo} className="default-btn" >Explore More Stratiges</Button>
         </Card>
-        <Card heading="Your Portfolio" otherInfo="$12544.44">
+        <Card heading="Your Portfolio" otherInfo={`${totalPrice} $`}>
           <div className="tokens-status">
-            <div className="token">
-              <span><div className="icon-blu"><EthIco /></div><p>Etheroum(ETH)</p></span>
-              <p className="amount">32.657 ETH</p>
-              <p>$84116.60</p>
-            </div>
-            <div className="token">
-              <span><div className="icon-blu green"><TetherIco /></div><p>Tether (USDT)</p></span>
-              <p className="amount">32.657 ETH</p>
-              <p>$84116.60</p>
-            </div>
-            <div className="token">
-              <span><div className="icon-blu blue-lit"><SuiIco /></div><p>SUI(SUI)</p></span>
-              <p className="amount">32.657 ETH</p>
-              <p>$84116.60</p>
-            </div>
-            <div className="token">
-              <span><div className="icon-blu white-bg"><AptusIco /></div><p>Aptos(APT)</p></span>
-              <p className="amount">32.657 ETH</p>
-              <p>$84116.60</p>
-            </div>
+            <table className="text-white">
+              <thead className="text-lg  text-yellow-300">
+                <td>No</td>
+                <td>Name</td>
+                <td>Symbol</td>
+                <td>Balance</td>
+                <td>Price</td>
+                <td>Total</td>
+              </thead>
+              <tbody className="text-md">
+                {
+                  value?.map((item, key) => (
+                    <tr>
+                      <td>{key + 1}</td>
+                      <td>{item?.name}</td>
+                      <td>{item?.symbol}</td>
+                      <td>{item?.balance}</td>
+                      <td>{item?.price} $</td>
+                      <td>{item?.price * item?.balance} $</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
 
           </div>
         </Card>
