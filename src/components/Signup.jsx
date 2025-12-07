@@ -23,7 +23,7 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/auth/signup', form);
+      const response = await axios.post('http://localhost:5500/auth/signup', form);
       setSuccess(response.data.message);
       setError('');
       window.location.href = '/login'; // Redirect after login
@@ -34,7 +34,7 @@ function Signup() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:5000/auth/google';
+    window.location.href = 'http://localhost:5500/auth/google';
   };
 
   return (

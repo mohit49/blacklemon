@@ -15,7 +15,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('http://localhost:5000/auth/login', form);
+      const { data } = await axios.post('http://localhost:5500/auth/login', form);
       localStorage.setItem('token', data.token);
       window.location.href = '/dashboard'; // Redirect after login
     } catch (err) {
@@ -24,7 +24,7 @@ function Login() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:5000/auth/google';
+    window.location.href = 'http://localhost:5500/auth/google';
   };
 
   return (

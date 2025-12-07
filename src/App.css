@@ -20,7 +20,7 @@ body {
   width: 100%;
 }
 
-.blacklemon-app {
+.darkpulse-app {
   margin: 0 auto;
   width: 1366px;
   top: 0;
@@ -75,7 +75,7 @@ header nav ul a {
 }
 
 .side-bar ul li:has(> a.active) {
-  background-color: #fef200;
+  background-color: #20E29F;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   color: #000000;
@@ -98,7 +98,7 @@ header nav ul a {
 
 .side-bar ul li:has(ul li> a.active) {
   display: block;
-  background-color: #fef200;
+  background-color: #20E29F;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 
@@ -118,7 +118,7 @@ header nav ul a {
 }
 
 .side-bar ul li:hover {
-  background-color: #fef200;
+  background-color: #20E29F;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   color: #000000;
@@ -178,7 +178,7 @@ main {
 .login-singup-page-container .MuiInputBase-root input,
 .MuiInputBase-root input:focus {
   background: none;
-  outline: 3px yellow solid;
+  outline: 3px #20E29F solid;
   background: none !important;
   background-color: #000000 !important;
   border-radius: 10px;
@@ -191,7 +191,7 @@ main {
 }
 
 .login-singup-page-container .MuiBox-root .MuiFormLabel-filled {
-  color: yellow;
+  color: #20E29F;
   padding: 10px;
   border-radius: 10px;
   top: -10px;
@@ -210,14 +210,14 @@ input:-webkit-autofill:active {
 
 .login-singup-page-container .MuiInputBase-root input,
 .MuiBox-root label {
-  color: yellow;
+  color: #20E29F;
   top: -5px;
 }
 
 .login-singup-page-container .MuiInputBase-root input,
 .MuiBox-root label.Mui-focused {
   background: #141414;
-  color: yellow;
+  color: #20E29F;
   padding: 15px;
   border-radius: 10px;
   top: -10px;
@@ -236,7 +236,7 @@ input:-webkit-autofill:active {
 }
 
 .singupNow a {
-  color: yellow;
+  color: #20E29F;
 }
 
 .singup-btn {
@@ -290,7 +290,7 @@ input:-webkit-autofill:active {
 }
 
 .side-bar ul li a span svg path {
-  fill: #FEF200;
+  fill: #20E29F;
 }
 
 .side-bar ul li a:hover span svg path {
@@ -372,13 +372,13 @@ input:-webkit-autofill:active {
 
 .bot-dash {
   padding: 10px;
-  background: rgba(254, 242, 0, 0.3);
+  background: rgba(32, 226, 159, 0.3);
   display: flex;
   flex-direction: row;
   gap: 10px;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px #FEF200 solid;
+  border-top: 1px #20E29F solid;
   margin-top: 5px;
 }
 
@@ -412,13 +412,13 @@ input:-webkit-autofill:active {
 }
 
 .list-data-bot li span {
-  color: #FEF200;
+  color: #20E29F;
 
 }
 
 .default-btn {
   padding: 15px 30px;
-  background: #FEF200;
+  background: #20E29F;
   width: 100%;
   display: flex;
   text-align: center;
@@ -457,7 +457,7 @@ input:-webkit-autofill:active {
 
 .default-btn:hover {
   outline: 2px;
-  outline: 5px rgba(254, 242, 0, 0.4) solid;
+  outline: 5px rgba(32, 226, 159, 0.4) solid;
 }
 
 .default-btn.pink:hover {
@@ -509,7 +509,7 @@ input:-webkit-autofill:active {
 }
 
 .table-bar .head.data div p:first-child {
-  color: #FEF200;
+  color: #20E29F;
 }
 
 .bl-card h3 {
@@ -518,7 +518,7 @@ input:-webkit-autofill:active {
 }
 
 .bl-card h3 span {
-  color: yellow;
+  color: #20E29F;
 }
 
 .tokens-status {
@@ -574,7 +574,7 @@ input:-webkit-autofill:active {
 }
 
 .tokens-status .token p.amount {
-  color: yellow;
+  color: #20E29F;
 }
 
 .grapdh-img img {
@@ -613,7 +613,7 @@ input:-webkit-autofill:active {
 
 .dropdown-header.open {
   border: none;
-  outline: 3px rgba(254, 242, 0, 0.4) solid;
+  outline: 3px rgba(32, 226, 159, 0.4) solid;
   box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075), 0 0 0 1px hsla(0, 0%, 0%, 0.05), 0 0.3px 0.4px hsla(0, 0%, 0%, 0.02), 0 0.9px 1.5px hsla(0, 0%, 0%, 0.045), 0 3.5px 6px hsla(0, 0%, 0%, 0.09);
 
 }
@@ -661,7 +661,7 @@ input:-webkit-autofill:active {
 
 .input-feild input:focus {
   border: none;
-  outline: 3px rgba(254, 242, 0, 0.4) solid;
+  outline: 3px rgba(32, 226, 159, 0.4) solid;
   box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075), 0 0 0 1px hsla(0, 0%, 0%, 0.05), 0 0.3px 0.4px hsla(0, 0%, 0%, 0.02), 0 0.9px 1.5px hsla(0, 0%, 0%, 0.045), 0 3.5px 6px hsla(0, 0%, 0%, 0.09);
 }
 
@@ -712,7 +712,7 @@ input:-webkit-autofill:active {
   border: 1px solid hsl(240, 4%, 11%);
 
   &:hover {
-    background-color: yellow;
+    background-color: #20E29F;
     color: #000000;
   }
 }
@@ -769,7 +769,7 @@ input:-webkit-autofill:active {
 }
 
 .stratiges .table-tr .table-td .discord {
-  color: yellow;
+  color: #20E29F;
   font-size: 13px;
   margin: 0;
   text-transform: capitalize;
@@ -796,7 +796,7 @@ input:-webkit-autofill:active {
   justify-content: center;
   color: #ffffff;
   font-weight: bold;
-  background-color: rgba(254, 242, 0, 0.4);
+  background-color: rgba(32, 226, 159, 0.4);
 }
 
 .stratiges .table-tr .table-td .badge2 {
@@ -868,11 +868,11 @@ input:-webkit-autofill:active {
 }
 
 .bot-form .feild-exchange .input-feild label:has(> input:checked) {
-  outline: rgba(254, 242, 0, 1) 2px solid;
+  outline: rgba(32, 226, 159, 1) 2px solid;
 }
 
 .bot-form .feild-exchange .input-feild label:has(> input:checked) p {
-  color: rgba(254, 242, 0, 1);
+  color: rgba(32, 226, 159, 1);
 }
 
 .bot-form .bot-feild {
@@ -1058,7 +1058,7 @@ input:-webkit-autofill:active {
 }
 
 .config-popin {
-  background: #FEF200;
+  background: #20E29F;
   padding: 15px;
   border-radius: 10px;
   position: absolute;
@@ -1067,7 +1067,7 @@ input:-webkit-autofill:active {
 }
 
 .config-popin .bl-card {
-  background: #FEF200;
+  background: #20E29F;
   padding: 0;
 }
 
@@ -1111,11 +1111,11 @@ input:-webkit-autofill:active {
 
 .config-popin .default-btn {
   background-color: #000000;
-  color: yellow;
+  color: #20E29F;
 }
 
 .config-popin .default-btn svg path {
-  fill: yellow;
+  fill: #20E29F;
 }
 
 .config-popin .advance-set p {
@@ -1322,7 +1322,7 @@ input:-webkit-autofill:active {
 }
 
 @media screen and (max-width: 1600px) {
-  .blacklemon-app {
+  .darkpulse-app {
     width: 100%;
   }
 
@@ -1425,4 +1425,8 @@ input:-webkit-autofill:active {
     flex-wrap: wrap;
     justify-content: center;
   }
+}
+
+.hover-bg-teal:hover {
+  background-color: #20E29F;
 }

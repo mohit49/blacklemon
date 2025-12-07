@@ -169,7 +169,7 @@ function PpmSimple() {
     if (botName && profit && size && !isNaN(numberSize) && !isNaN(profitSize) && !isNaN(spreadSize) && tradingValue && connectorValue) {
       console.log("sar");
 
-      const response = await axios.post('http://localhost:5000/api/bot-config',
+      const response = await axios.post('http://localhost:5500/api/bot-config',
         {
           botName,
           connectorValue,

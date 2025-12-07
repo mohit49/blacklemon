@@ -91,7 +91,7 @@ function Bots() {
   //       "script_config": configVal
   //     });
   //     if (instance.success = true) {
-  //       setPopmsg("Black Lemon Instance Created Sucesfully")
+      //       setPopmsg("Darkpulse Instance Created Sucesfully")
   //       setError(false)
   //     }
   //   } catch (error) {
@@ -143,7 +143,7 @@ function Bots() {
   let average = true;
 
   const getBotAccount = async () => {
-    const response = await axios.get('http://localhost:5000/api/bot-get')
+    const response = await axios.get('http://localhost:5500/api/bot-get')
     setGetBotInfo(response.data)
     console.log('responsedat', response.data);
 
@@ -166,7 +166,7 @@ function Bots() {
 
 
   const botStart = async (id) => {
-    const response = await axios.post('http://localhost:5000/api/bot-start', { id })
+    const response = await axios.post('http://localhost:5500/api/bot-start', { id })
 
     console.log('response-->', response?.data);
     setHash(response?.data.text)
@@ -176,7 +176,7 @@ function Bots() {
   }
 
   const botStop = async (id) => {
-    const response = await axios.post('http://localhost:5000/api/bot-stop', { id })
+    const response = await axios.post('http://localhost:5500/api/bot-stop', { id })
     setState(!state)
   }
 
@@ -227,7 +227,7 @@ function Bots() {
                 getBotInfo.map((item, key) => (
                   <tr index={key} className='p-1'>
                     <td>{key + 1}</td>
-                    <td onClick={() => naviage('/strategies')} className='hover:cursor-pointer hover:bg-yellow-200 hover:text-black hover:rounded-md'>{item?.botName}</td>
+                    <td onClick={() => naviage('/strategies')} className='hover:cursor-pointer hover:text-black hover:rounded-md hover-bg-teal'>{item?.botName}</td>
                     <td>{item?.botStyle}</td>
                     <td>{item?.botStyle}</td>
                     <td className=''>

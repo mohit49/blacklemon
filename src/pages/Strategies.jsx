@@ -23,7 +23,7 @@ function Strategies() {
   const [id, setId] = useState('')
 
   const fetchMarketData = async () => {
-    const res = await axios.get('http://localhost:5000/api/get-strategy')
+    const res = await axios.get('http://localhost:5500/api/get-strategy')
     setMarketData(res?.data?.strategy)
   }
 

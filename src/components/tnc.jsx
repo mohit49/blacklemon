@@ -22,26 +22,26 @@ function changeCheck() {
         </Typography>
         <div className='flex flex-col gap-3 text-[#ffffff] leading-8'> 
         <p className='text-[#ffffff]'>
-        1. Trial Project: The Black Lemon project is a trial initiative that utilizes the Black Lemon Token as a means to access the platform and its features. By participating, you acknowledge that this is an experimental project.
+        1. Trial Project: The Darkpulse project is a trial initiative that utilizes the Darkpulse Token as a means to access the platform and its features. By participating, you acknowledge that this is an experimental project.
 </p>
 <p>
-2. Access and Use Only: The Black Lemon Token should not be construed as an investment. It serves solely as a token for accessing the Black Lemon platform and its associated functionalities.
+2. Access and Use Only: The Darkpulse Token should not be construed as an investment. It serves solely as a token for accessing the Darkpulse platform and its associated functionalities.
 </p>
 <p>
-3. Team Rights: The Black Lemon AI team reserves the right to exit the project at any time without any liability to holders of the Black Lemon AI Token. Participants acknowledge this condition by engaging with the token.
+3. Team Rights: The Darkpulse AI team reserves the right to exit the project at any time without any liability to holders of the Darkpulse AI Token. Participants acknowledge this condition by engaging with the token.
 </p>
 <p>
-4. No Solicitation to Purchase: The Black Lemon AI team has never solicited or encouraged any individuals to purchase the Black Lemon AI Token. Participation is voluntary and at the individual’s discretion.
+4. No Solicitation to Purchase: The Darkpulse AI team has never solicited or encouraged any individuals to purchase the Darkpulse AI Token. Participation is voluntary and at the individual’s discretion.
 </p>
 <p>
-5. No Tokens Held by Team: The Black Lemon AI team does not hold any tokens in their possession, ensuring that all transactions and holdings are managed independently by token holders.
+5. No Tokens Held by Team: The Darkpulse AI team does not hold any tokens in their possession, ensuring that all transactions and holdings are managed independently by token holders.
 </p>
 <p>
   
-6. Accredited Investors: By purchasing the Black Lemon AI Token, you confirm that you are an accredited investor and fully understand the risks outlined in these terms.
+6. Accredited Investors: By purchasing the Darkpulse AI Token, you confirm that you are an accredited investor and fully understand the risks outlined in these terms.
 </p>
 <p>
-By engaging with the Black Lemon AI Token, you agree to these terms and acknowledge your understanding of the inherent risks. Always conduct your own research before participating in any project.
+By engaging with the Darkpulse AI Token, you agree to these terms and acknowledge your understanding of the inherent risks. Always conduct your own research before participating in any project.
         </p>
         <p className='flex flex-row gap-2 items-center'>
           <input type='checkbox' onChange={changeCheck} className='w-[20px] h-[20px]'/> <p>Accept Terms And Conditions</p>

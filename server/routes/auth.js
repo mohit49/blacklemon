@@ -20,14 +20,14 @@ const sendConfirmationEmail = async (email, token) => {
       'api-key': process.env.BREVO_API_KEY, // Use environment variable for security
     },
     body: JSON.stringify({
-      sender: { name: 'Blacklemon', email: 'nakamuradev001@gmail.com' },
-      replyTo: { email: 'nakamuradev001@gmail.com', name: 'Blacklemon' },
+      sender: { name: 'Darkpulse', email: 'nakamuradev001@gmail.com' },
+      replyTo: { email: 'nakamuradev001@gmail.com', name: 'Darkpulse' },
       to: [{ name: email.split('@')[0], email: email }], // Derive name from email if none provided
       textContent: 'Confirm Your Email',
       htmlContent: `
         <h1>Welcome to Our App</h1>
         <p>Please confirm your email by clicking the link below:</p>
-        <a href="http://localhost:3000/confirm?token=${token}">Confirm Email</a>
+        <a href="http://localhost:3300/confirm?token=${token}">Confirm Email</a>
       `,
       subject: 'Verify Your Email',
     }),
@@ -82,12 +82,15 @@ router.post('/signup', async (req, res) => {
       confirmationToken,
     });
 
+    // Auto-verify user (email confirmation disabled)
+    user.isVerified = true;
+    user.confirmationToken = null;
     await user.save();
 
-    // Send confirmation email
-    await sendConfirmationEmail(email, confirmationToken);
+    // Send confirmation email (disabled)
+    // await sendConfirmationEmail(email, confirmationToken);
 
-    res.status(201).json({ message: 'User registered successfully. Please check your email to confirm your account.' });
+    res.status(201).json({ message: 'User registered successfully. You can now login.' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -114,28 +117,14 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Google Login
-router.get(
-  '/google',
-  passport.authenticate('google', {
-    scope: ['profile', 'email'],
-    prompt: 'select_account', // Forces the "Choose an Account" screen
-  })
-);
+// Google Login (temporarily disabled)
+router.get('/google', (_req, res) => {
+  res.status(501).json({ error: 'Google authentication is currently disabled.' });
+});
 
-
-router.get(
-  '/google/callback',
-  (req, res, next) => {
-    console.log('Google callback hit');
-    next();
-  },
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  (req, res) => {
-    const token = jwt.sign({ userId: req.user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.redirect(`http://localhost:3000/dashboard?token=${token}`);
-  }
-);
+router.get('/google/callback', (_req, res) => {
+  res.status(501).json({ error: 'Google authentication is currently disabled.' });
+});
 
 router.get('/confirm', async (req, res) => {
   const { token } = req.query;
@@ -154,7 +143,7 @@ router.get('/confirm', async (req, res) => {
     await user.save();
 
     // Redirect to the login page
-    res.redirect('http://localhost:3000/login');
+    res.redirect('http://localhost:3300/login');
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

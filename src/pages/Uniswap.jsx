@@ -75,7 +75,7 @@ const Uniswap = () => {
           )
       }
        <div className="flex flex-col w-full p-[20px] bg-[#000000] rounded-lg swapContainer">
-      <div className="text-[#FEF200] font-bold text-[25px] text-left mb-5">
+      <div className="text-[#20E29F] font-bold text-[25px] text-left mb-5">
        <h1> Provideing Liquidity </h1>
       </div>
 

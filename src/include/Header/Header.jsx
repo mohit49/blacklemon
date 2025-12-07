@@ -86,7 +86,7 @@ const Header = ({ hendlmobilemenu }) => {
     <Router>
       <header>
         <nav>
-          <Link to="/" className="blacklemon-app-logo"><img src={getImgURL("logo.png")} /></Link>
+          <Link to="/" className="darkpulse-app-logo"><img src={getImgURL("logo.png")} style={{ width: '70px' }} /></Link>
           <ul className="end-menu">
             <li><w3m-core-button></w3m-core-button></li>
             <li><Link to="/community">Community</Link></li>

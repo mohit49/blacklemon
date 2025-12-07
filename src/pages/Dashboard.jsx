@@ -34,7 +34,7 @@ function Dashboard() {
   }
 
   const getAccount = async () => {
-    const response = await axios.get('http://localhost:5000/api/bot-get')
+    const response = await axios.get('http://localhost:5500/api/bot-get')
     setGetBotInfo(response.data)
     const bot = response?.data || []
     const formData = bot?.map((item) => ((!item.status) ? {
@@ -81,7 +81,7 @@ function Dashboard() {
                   discription="No bots are currently running. Try one of our examples or check out strategies from the community to start creating a bot."
                 />
                 : getBotInfo.map((item, key) => (
-                  <div index={key} className="text-white flex items-center gap-1 text-yellow-300">
+                  <div index={key} className="text-white flex items-center gap-1" style={{ color: '#20E29F' }}>
                     <span>+</span>
                     <p>{item?.botName}</p>
                   </div>

@@ -10,7 +10,7 @@ function App() {
   }
   return (
     <>
-      <div className="blacklemon-app">
+      <div className="darkpulse-app">
         <Header hendlmobilemenu={hendlmobilemenu} />
         
        

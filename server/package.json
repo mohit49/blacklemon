@@ -6,6 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js ",
+    "restart": "lsof -ti:5500 | xargs kill -9 2>/dev/null || true && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
