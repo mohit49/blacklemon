@@ -1,14 +1,22 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { TextField, Typography, Box, Container } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Button from "../uielement/Button";
 import { Label } from 'recharts';
 function Tnc() {
   const [check , SetChecked] = useState(false)
+  const navigate = useNavigate();
 
 function changeCheck() {
   SetChecked(!check)
+}
+
+const handleAccept = () => {
+  if (check) {
+    localStorage.setItem('tncAccepted', 'true');
+    navigate('/bot/login');
+  }
 }
 
  
@@ -46,14 +54,15 @@ By engaging with the Darkpulse AI Token, you agree to these terms and acknowledg
         <p className='flex flex-row gap-2 items-center'>
           <input type='checkbox' onChange={changeCheck} className='w-[20px] h-[20px]'/> <p>Accept Terms And Conditions</p>
         </p>
-        {check && <NavLink to="/login" buttonType="link" className="default-btn login-btn"
-            
-            variant="outlined"
-            fullWidth
-            sx={{ mt: 2 }}
+        {check && <div style={{ marginTop: '20px' }}>
+          <Button 
+            buttonType="button"
+            handler={handleAccept}
+            className="default-btn login-btn"
           >
             Continue To Website
-          </NavLink>}
+          </Button>
+        </div>}
         </div>
       </Box>
     </Container>

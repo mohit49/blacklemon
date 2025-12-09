@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getImgURL } from "../../util/image-util";
 import { MenuIcon } from "../../icons/icons";
 import LogoutButton from "../../components/LogoutButton";
@@ -83,21 +83,17 @@ const Header = ({ hendlmobilemenu }) => {
   }, [])
 
   return (
-    <Router>
-      <header>
-        <nav>
-          <Link to="/" className="darkpulse-app-logo"><img src={getImgURL("logo.png")} style={{ width: '70px' }} /></Link>
-          <ul className="end-menu">
-            <li><w3m-core-button></w3m-core-button></li>
-            <li><Link to="/community">Community</Link></li>
-            <li><Link to="/documentation">Documentation</Link></li>
-            <li><Link to="/tnc">Terms & Conditions</Link></li>
-            <li><LogoutButton></LogoutButton></li>
-          </ul>
-          <div className="mob-menu"> <Link onClick={hendlmobilemenu} itemType="button"><MenuIcon /></Link></div>
-        </nav>
-      </header>
-    </Router>
+    <header>
+      <nav>
+        <Link to="/bot/dashboard" className="darkpulse-app-logo"><img src={getImgURL("logo.png")} style={{ width: '70px' }} /></Link>
+        <ul className="end-menu">
+          <li><w3m-core-button></w3m-core-button></li>
+          <li><Link to="/bot/tnc">Terms & Conditions</Link></li>
+          <li><LogoutButton></LogoutButton></li>
+        </ul>
+        <div className="mob-menu"> <Link onClick={hendlmobilemenu} itemType="button"><MenuIcon /></Link></div>
+      </nav>
+    </header>
   );
 }
 
