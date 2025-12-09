@@ -58,30 +58,61 @@ const travelyOprations = {
       });
     });
   },
+  closeMobileMenu: function () {
+    const menuBtn = document.querySelector(".menu-btn-3");
+    const header = document.querySelector("header");
+    if (menuBtn) menuBtn.classList.remove("active");
+    if (header) header.classList.remove("active-nav");
+    document.body.classList.remove("fix-body");
+  },
   mobileMenu: function () {
-    document
-      .querySelector(".menu-btn-3")
-      ?.addEventListener("click", function () {
-        document.querySelector(".menu-btn-3")?.classList.toggle("active");
-        document.querySelector("header")?.classList.toggle("active-nav");
-        document
-          .querySelector(".header-section")
-          ?.classList.toggle("menu-open");
-        document.body.classList.toggle("fix-body");
-      });
-
-      document
-      .querySelector(".close-icon-mob")
-      ?.addEventListener("click", function () {
-        document.querySelector(".menu-btn-3")?.classList.toggle("active");
-        document.querySelector("header")?.classList.toggle("active-nav");
-        document
-          .querySelector(".header-section")
-          ?.classList.toggle("menu-open");
-        document.body.classList.toggle("fix-body");
-      });
-
+    const _self = this;
+    
+    const menuBtn = document.querySelector(".menu-btn-3");
+    if (menuBtn) {
+      // Remove any existing listeners by cloning
+      const newMenuBtn = menuBtn.cloneNode(true);
+      menuBtn.parentNode.replaceChild(newMenuBtn, menuBtn);
       
+      newMenuBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const header = document.querySelector("header");
+        newMenuBtn.classList.toggle("active");
+        if (header) {
+          header.classList.toggle("active-nav");
+        }
+        document.body.classList.toggle("fix-body");
+      });
+    }
+
+    const closeBtn = document.querySelector(".close-icon-mob");
+    if (closeBtn) {
+      // Remove any existing listeners
+      const newCloseBtn = closeBtn.cloneNode(true);
+      closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+      
+      newCloseBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        _self.closeMobileMenu();
+      });
+    }
+
+    // Close menu when clicking on menu links
+    const menuLinks = document.querySelectorAll(".menu-links li a");
+    menuLinks.forEach(function(link) {
+      // Remove existing listener and add new one
+      const newLink = link.cloneNode(true);
+      link.parentNode.replaceChild(newLink, link);
+      
+      newLink.addEventListener("click", function(e) {
+        // Allow default anchor behavior for smooth scrolling
+        setTimeout(() => {
+          _self.closeMobileMenu();
+        }, 100);
+      });
+    });
   },
   stickyScroll: function () {
     const header = document.querySelector("header");

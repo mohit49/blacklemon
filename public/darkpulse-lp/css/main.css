@@ -167,6 +167,11 @@ header .top-navigation {
   justify-content: space-between;
   position: relative;
 }
+@media (max-width: 990px) {
+  .top-navigation-content {
+    justify-content: space-between;
+  }
+}
 
 header .top-navigation-content ul {
   display: flex;
@@ -913,7 +918,17 @@ footer p {
     display: block;
   }
   header .top-navigation {
-    width: 60%;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header .top-navigation .main-logo {
+    order: 1;
+    margin-right: auto;
+  }
+  header .top-navigation .mobile-menu {
+    order: 2;
+    margin-left: auto;
   }
   .content-img h3 {
     font-size: 18px;
@@ -1005,13 +1020,24 @@ footer p {
   }
   header .top-navigation {
     width: 100%;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  header .top-navigation .main-logo {
+ 
+    margin-right: auto;
+  }
+  header .top-navigation .mobile-menu {
+   
+    margin-left: auto;
   }
   header .main-logo {
     position: relative;
-    left: auto;
+    left: 0;
     transform: none;
-    width: 90px;
+    width: 60px;
+    margin-top: 0;
+    margin-left: 0;
   }
   .hero-section .content-area .center-section .center-circle {
     width: 300px;
@@ -1056,8 +1082,15 @@ footer p {
   .close-icon-mob {
     display: block;
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    padding: 10px;
+  }
+  .close-icon-mob svg {
+    width: 24px;
+    height: 24px;
   }
 
   .join-us-journey .inner-con .content ul li:last-child.email {
@@ -1081,9 +1114,10 @@ footer p {
 }
 
 header.active-nav .top-navigation ul.menu-links {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   gap: 30px;
+  z-index: 999;
 }
 
 @media (min-width: 1201px) {

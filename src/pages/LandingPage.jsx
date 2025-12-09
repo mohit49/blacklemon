@@ -77,6 +77,55 @@ function LandingPage() {
             // Inject body content
             container.innerHTML = bodyContent;
             
+            // Attach mobile menu handler immediately after injection
+            setTimeout(() => {
+              const menuBtn = container.querySelector('.menu-btn-3');
+              const closeBtn = container.querySelector('.close-icon-mob');
+              const header = container.querySelector('header') || document.querySelector('header');
+              
+              // Function to close menu
+              const closeMenu = () => {
+                if (menuBtn) menuBtn.classList.remove('active');
+                if (header) header.classList.remove('active-nav');
+                document.body.classList.remove('fix-body');
+              };
+              
+              // Function to toggle menu
+              const toggleMenu = () => {
+                if (menuBtn) menuBtn.classList.toggle('active');
+                if (header) header.classList.toggle('active-nav');
+                document.body.classList.toggle('fix-body');
+              };
+              
+              if (menuBtn) {
+                menuBtn.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggleMenu();
+                });
+                console.log('Mobile menu button event listener attached');
+              }
+              
+              if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  closeMenu();
+                });
+                console.log('Close button event listener attached');
+              }
+              
+              // Close menu when clicking on menu links
+              const menuLinks = container.querySelectorAll('.menu-links li a');
+              menuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                  setTimeout(() => {
+                    closeMenu();
+                  }, 100);
+                });
+              });
+            }, 50);
+            
             // Wait for React to render, then load scripts
             requestAnimationFrame(() => {
               setTimeout(() => {
@@ -137,6 +186,22 @@ function LandingPage() {
                                 try {
                                   // Re-execute the homeInit block
                                   eval('if (page === "homePage") { travelyOprations.mobileMenu(); travelyOprations.hederMenuLineAnimation(); travelyOprations.animateHomeHero(); travelyOprations.animateLines(); travelyOprations.createBackgroundText(); }');
+                                  
+                                  // Ensure mobile menu works - attach event listeners directly
+                                  const menuBtn = document.querySelector('.menu-btn-3');
+                                  if (menuBtn && typeof travelyOprations !== 'undefined') {
+                                    // Remove old listener and add new one
+                                    const newBtn = menuBtn.cloneNode(true);
+                                    menuBtn.parentNode.replaceChild(newBtn, menuBtn);
+                                    newBtn.addEventListener('click', function(e) {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      const header = document.querySelector('header');
+                                      newBtn.classList.toggle('active');
+                                      if (header) header.classList.toggle('active-nav');
+                                      document.body.classList.toggle('fix-body');
+                                    });
+                                  }
                                 } catch(e) {
                                   console.error('Could not re-execute animations:', e);
                                   // Fallback: manually create animations
