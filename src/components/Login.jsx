@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TextField, Typography, Box, Container } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Button from "../uielement/Button";
+import { getCookie } from "../util/cookieUtils";
+
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  // Check TNC acceptance on mount
+  useEffect(() => {
+    const tncAccepted = getCookie('tncAccepted') === 'true';
+    if (!tncAccepted) {
+      navigate('/tnc');
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });

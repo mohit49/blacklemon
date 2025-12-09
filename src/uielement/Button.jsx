@@ -7,6 +7,7 @@ function Button(props) {
         {props?.children}
       </Link>
     ) : <button
+      type={props?.type || "button"}
       disabled={props?.disabled}
       onClick={props?.handler}
       className={props?.className}>

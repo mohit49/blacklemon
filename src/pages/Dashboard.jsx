@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import TradingView from "../components/TradingView/TradingView";
 import { useSelector } from "react-redux";
+import { getCookie } from "../util/cookieUtils";
 
 function Dashboard() {
 
@@ -27,22 +28,31 @@ function Dashboard() {
   const [token, setToken] = useState(null);
   const [botAccount, setBotAccount] = useState(null)
   const [state, setState] = useState(true)
-  const [getBotInfo, setGetBotInfo] = useState('')
+  const [getBotInfo, setGetBotInfo] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   const moveTo = () => {
     navigate('/strategies')
   }
 
   const getAccount = async () => {
-    const response = await axios.get('http://localhost:5500/api/bot-get')
-    setGetBotInfo(response.data)
-    const bot = response?.data || []
-    const formData = bot?.map((item) => ((!item.status) ? {
-      value: item._id,
-      label: item.botName
-    } : {}))
+    try {
+      setLoading(true);
+      const response = await axios.get('http://localhost:5500/api/bot-get')
+      setGetBotInfo(response.data || [])
+      const bot = response?.data || []
+      const formData = bot?.map((item) => ((!item.status) ? {
+        value: item._id,
+        label: item.botName
+      } : {}))
 
-    setBotAccount(formData)
+      setBotAccount(formData)
+    } catch (error) {
+      console.error('Error fetching bot data:', error);
+      setGetBotInfo([]);
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -50,6 +60,14 @@ function Dashboard() {
   }, [state])
 
   useEffect(() => {
+    // First check TNC acceptance
+    const tncAccepted = getCookie('tncAccepted') === 'true';
+    if (!tncAccepted) {
+      navigate('/tnc');
+      return;
+    }
+
+    // Then check authentication
     const params = new URLSearchParams(window.location.search);
     if (params.get('token')) {
       setToken(params.get('token'));
@@ -64,28 +82,32 @@ function Dashboard() {
   }, [navigate, token]);
 
   return (
-    <div className="h-screen w-full">
+    <div className="w-full">
       <h2 className="heading-top">Dashboard</h2>
-      <div className="h-[500px] w-full">
+      <div className="h-[500px] w-full" style={{ minHeight: '500px' }}>
         <TradingView />
       </div>
-      <div className="conatiner-grid cards mt-10">
+      <div className="cards mt-10">
         <Card heading="Bots" className='relative'>
 
           <div className="list-data-bot">
             {
-              !getBotInfo ?
+              loading ? (
+                <div className="text-white">Loading...</div>
+              ) : !getBotInfo || getBotInfo.length === 0 ? (
                 <Notes
                   className="bot-dash"
                   icon={<InfoIco />}
                   discription="No bots are currently running. Try one of our examples or check out strategies from the community to start creating a bot."
                 />
-                : getBotInfo.map((item, key) => (
-                  <div index={key} className="text-white flex items-center gap-1" style={{ color: '#20E29F' }}>
+              ) : (
+                getBotInfo.map((item, key) => (
+                  <div key={key} className="text-white flex items-center gap-1" style={{ color: '#20E29F' }}>
                     <span>+</span>
                     <p>{item?.botName}</p>
                   </div>
                 ))
+              )
             }
 
 

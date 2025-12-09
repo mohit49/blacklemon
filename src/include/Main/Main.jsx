@@ -13,6 +13,7 @@ import Login from '../../components/Login';
 import ProtectedRoute from '../../components/ProtectedRoute ';
 import Tnc from '../../components/tnc';
 import Uniswap from '../../pages/Uniswap';
+import TncGuard from '../../components/TncGuard';
 
 function Main({ menuState }) {
 
@@ -39,45 +40,30 @@ function Main({ menuState }) {
         <div className="dashboard">
           <Routes>
             {/* Public Routes */}
-            <Route path="/bot/signup" element={<Signup />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/bot/login" element={<Login />} />
             <Route path="/login" element={<Login />} />
-
+            <Route path="/tnc" element={<Tnc />} />
 
             {/* Protected Routes */}
             <Route
               exact
-              path="/bot/tnc"
+              path="/dashboard"
               element={
-                <Tnc />
+                <TncGuard>
+                  <Dashboard />
+                </TncGuard>
               }
             />
             <Route
               exact
-              path="/tnc"
-              element={
-                <Tnc />
-              }
-            />
-            <Route
-              exact
-              path="/bot/dashboard"
-              element={
-                <Dashboard />
-              }
-            />
-            <Route
-              exact
-              path="/bot/uniswap"
+              path="/uniswap"
               element={
                 <Uniswap />
               }
             />
-
             <Route
               exact
-              path="/bot/credentials"
+              path="/credentials"
               element={
                 <ProtectedRoute>
                   <Credentials />
@@ -86,7 +72,7 @@ function Main({ menuState }) {
             />
             <Route
               exact
-              path="/bot/strategies"
+              path="/strategies"
               element={
                 <ProtectedRoute>
                   <Strategies />
@@ -94,7 +80,7 @@ function Main({ menuState }) {
               }
             />
             <Route
-              path="/bot/bots"
+              path="/bots"
               element={
                 <ProtectedRoute>
                   <Bots />
@@ -102,7 +88,7 @@ function Main({ menuState }) {
               }
             />
             <Route
-              path="/bot/ppm-simple"
+              path="/ppm-simple"
               element={
                 <ProtectedRoute>
                   <PpmSimple />
@@ -110,7 +96,7 @@ function Main({ menuState }) {
               }
             />
             <Route
-              path="/bot/active-bots"
+              path="/active-bots"
               element={
                 <ProtectedRoute>
                   <BotName />
@@ -118,7 +104,7 @@ function Main({ menuState }) {
               }
             />
             <Route
-              path="/bot/configurations"
+              path="/configurations"
               element={
                 <ProtectedRoute>
                   <Configurations />
@@ -126,46 +112,8 @@ function Main({ menuState }) {
               }
             />
 
-            {/* Legacy routes for backward compatibility */}
-            <Route
-              exact
-              path="/dashboard"
-              element={<Navigate to="/bot/dashboard" replace />}
-            />
-            <Route
-              exact
-              path="/uniswap"
-              element={<Navigate to="/bot/uniswap" replace />}
-            />
-            <Route
-              exact
-              path="/credentials"
-              element={<Navigate to="/bot/credentials" replace />}
-            />
-            <Route
-              exact
-              path="/strategies"
-              element={<Navigate to="/bot/strategies" replace />}
-            />
-            <Route
-              path="/bots"
-              element={<Navigate to="/bot/bots" replace />}
-            />
-            <Route
-              path="/ppm-simple"
-              element={<Navigate to="/bot/ppm-simple" replace />}
-            />
-            <Route
-              path="/active-bots"
-              element={<Navigate to="/bot/active-bots" replace />}
-            />
-            <Route
-              path="/configurations"
-              element={<Navigate to="/bot/configurations" replace />}
-            />
-
-            <Route path="/bot" element={<Navigate to="/bot/tnc" replace />} />
-            <Route path="/bot/*" element={<Navigate to="/bot/dashboard" />} />
+            {/* Default redirect */}
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
           </Routes>
         </div>

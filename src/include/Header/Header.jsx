@@ -85,10 +85,10 @@ const Header = ({ hendlmobilemenu }) => {
   return (
     <header>
       <nav>
-        <Link to="/bot/dashboard" className="darkpulse-app-logo"><img src={getImgURL("logo.png")} style={{ width: '70px' }} /></Link>
+        <Link to="/dashboard" className="darkpulse-app-logo"><img src={getImgURL("logo.png")} style={{ width: '70px' }} /></Link>
         <ul className="end-menu">
           <li><w3m-core-button></w3m-core-button></li>
-          <li><Link to="/bot/tnc">Terms & Conditions</Link></li>
+          <li><Link to="/tnc">Terms & Conditions</Link></li>
           <li><LogoutButton></LogoutButton></li>
         </ul>
         <div className="mob-menu"> <Link onClick={hendlmobilemenu} itemType="button"><MenuIcon /></Link></div>

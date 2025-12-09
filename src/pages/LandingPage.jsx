@@ -1,8 +1,28 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getCookie } from '../util/cookieUtils';
+import Tnc from '../components/tnc';
 
 function LandingPage() {
   const navigate = useNavigate();
+  // Check TNC acceptance synchronously on initial render
+  const [tncAccepted, setTncAccepted] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return getCookie('tncAccepted') === 'true';
+    }
+    return false;
+  });
+
+  // Handle TNC acceptance callback
+  const handleTncAccept = () => {
+    // Refresh the page to show landing page content
+    window.location.reload();
+  };
+
+  // If TNC not accepted, show TNC component
+  if (!tncAccepted) {
+    return <Tnc onAccept={handleTncAccept} isLandingPage={true} />;
+  }
 
   useEffect(() => {
     // Load landing page HTML content
@@ -269,7 +289,7 @@ function LandingPage() {
       const scripts = document.querySelectorAll('script[src*="/darkpulse-lp/js/"]');
       scripts.forEach(script => script.remove());
     };
-  }, [navigate]);
+  }, []);
 
   return (
     <div 

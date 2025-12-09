@@ -4,6 +4,8 @@ function TradingViewWidget() {
   const container = useRef(null);
 
   useEffect(() => {
+    if (!container.current) return;
+
     const script = document.createElement("script");
     script.src = "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
     script.type = "text/javascript";
@@ -22,13 +24,12 @@ function TradingViewWidget() {
       support_host: "https://www.tradingview.com"
     });
 
-    if (container.current) {
-      container.current.appendChild(script);
-    }
+    const currentContainer = container.current;
+    currentContainer.appendChild(script);
 
     return () => {
-      if (container.current) {
-        container.current.removeChild(script);
+      if (currentContainer && currentContainer.contains(script)) {
+        currentContainer.removeChild(script);
       }
     };
   }, []);

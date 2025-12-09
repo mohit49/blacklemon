@@ -1,23 +1,31 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { TextField, Typography, Box, Container } from '@mui/material';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Typography, Box, Container } from '@mui/material';
 import Button from "../uielement/Button";
-import { Label } from 'recharts';
-function Tnc() {
-  const [check , SetChecked] = useState(false)
+import { setCookie } from "../util/cookieUtils";
+
+function Tnc({ onAccept, isLandingPage = false }) {
+  const [check, SetChecked] = useState(false);
   const navigate = useNavigate();
 
-function changeCheck() {
-  SetChecked(!check)
-}
-
-const handleAccept = () => {
-  if (check) {
-    localStorage.setItem('tncAccepted', 'true');
-    navigate('/bot/login');
+  function changeCheck() {
+    SetChecked(!check);
   }
-}
+
+  const handleAccept = () => {
+    if (check) {
+      // Store TNC acceptance in cookie (expires in 1 year)
+      setCookie('tncAccepted', 'true', 365);
+      
+      // If on landing page, call the callback to stay on landing page
+      if (isLandingPage && onAccept) {
+        onAccept();
+      } else {
+        // Otherwise, redirect to login
+        navigate('/login');
+      }
+    }
+  };
 
  
 
@@ -60,7 +68,7 @@ By engaging with the Darkpulse AI Token, you agree to these terms and acknowledg
             handler={handleAccept}
             className="default-btn login-btn"
           >
-            Continue To Website
+            {isLandingPage ? 'Continue To Website' : 'Continue To Login'}
           </Button>
         </div>}
         </div>
