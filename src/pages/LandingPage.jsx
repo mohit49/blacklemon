@@ -51,27 +51,14 @@ function LandingPage() {
           }
         }
         
-        // Check if CSS is already loaded, if not load it
-        const existingLink = document.querySelector(`link[href="${cssHref}"]`);
-        if (!existingLink) {
-          const newLink = document.createElement('link');
-          newLink.rel = 'stylesheet';
-          newLink.href = cssHref;
-          newLink.type = 'text/css';
-          document.head.appendChild(newLink);
-          
-          // Wait for CSS to load before injecting content
-          newLink.onload = () => {
-            injectContent();
-          };
-        } else {
-          injectContent();
-        }
-        
-        function injectContent() {
-        
+        // Define injectContent function (must be defined before CSS loading)
+        const injectContent = () => {
           // Extract body content and update all paths
           let bodyContent = doc.body.innerHTML;
+          
+          // CRITICAL: Remove script tags from body content BEFORE injection
+          // Scripts will be loaded manually after DOM is ready
+          bodyContent = bodyContent.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
           
           // Update all image paths
           bodyContent = bodyContent.replace(/src="img\//g, 'src="/darkpulse-lp/img/');
@@ -81,21 +68,51 @@ function LandingPage() {
           bodyContent = bodyContent.replace(/href="css\//g, 'href="/darkpulse-lp/css/');
           bodyContent = bodyContent.replace(/href='css\//g, "href='/darkpulse-lp/css/");
           
-          // Update JS paths
-          bodyContent = bodyContent.replace(/src="js\//g, 'src="/darkpulse-lp/js/');
-          bodyContent = bodyContent.replace(/src='js\//g, "src='/darkpulse-lp/js/");
-          
           // Inject into container
           const container = document.getElementById('landing-page-container');
-          if (container) {
-            // Clear any existing content
-            container.innerHTML = '';
-            
-            // Set page variable before loading scripts
-            window.page = "homePage";
-            
-            // Inject body content
-            container.innerHTML = bodyContent;
+          if (!container) {
+            console.error('Container #landing-page-container not found!');
+            return;
+          }
+          
+          console.log('Injecting HTML content into container...');
+          
+          // Clear any existing content
+          container.innerHTML = '';
+          
+          // Set page variable before loading scripts
+          window.page = "homePage";
+          
+          // Inject body content (WITHOUT scripts)
+          console.log('About to inject HTML. Body content length:', bodyContent.length);
+          console.log('Body content preview (first 200 chars):', bodyContent.substring(0, 200));
+          
+          container.innerHTML = bodyContent;
+          
+          // Force a reflow to ensure DOM is updated
+          void container.offsetHeight;
+          
+          console.log('HTML content injected. Container children:', container.children.length);
+          console.log('Container HTML length:', container.innerHTML.length);
+          console.log('First child:', container.firstElementChild?.tagName);
+          
+          // Verify content was injected
+          if (container.children.length === 0) {
+            console.error('ERROR: HTML content was not injected! Container is empty.');
+            console.error('Container element:', container);
+            console.error('Body content was:', bodyContent.substring(0, 500));
+            return;
+          }
+          
+          // Double-check that key elements exist
+          const testMenu = container.querySelector('.menu-links');
+          const testHeader = container.querySelector('header');
+          console.log('Key elements check - menu-links:', !!testMenu, 'header:', !!testHeader);
+          
+          if (!testMenu && !testHeader) {
+            console.error('ERROR: Key elements not found after injection!');
+            console.error('Container innerHTML preview:', container.innerHTML.substring(0, 500));
+          }
             
             // Attach mobile menu handler immediately after injection
             setTimeout(() => {
@@ -146,25 +163,53 @@ function LandingPage() {
               });
             }, 50);
             
-            // Wait for React to render, then load scripts
-            requestAnimationFrame(() => {
+            // Wait for DOM to be fully ready before loading scripts
+            // Use multiple checks to ensure HTML is in the DOM
+            const waitForDOMAndLoadScripts = () => {
+              // Check if container has content
+              if (container.children.length === 0) {
+                console.log('Waiting for DOM... container is empty, retrying...');
+                setTimeout(waitForDOMAndLoadScripts, 100);
+                return;
+              }
+              
+              // Check if key elements exist
+              const menuLinks = container.querySelector('.menu-links');
+              if (!menuLinks) {
+                console.log('Waiting for DOM... menu-links not found, retrying...');
+                setTimeout(waitForDOMAndLoadScripts, 100);
+                return;
+              }
+              
+              console.log('DOM is ready! Container has', container.children.length, 'children');
+              console.log('Menu links found:', !!menuLinks);
+              
+              // Now load scripts after DOM is confirmed ready
               setTimeout(() => {
                 // Load JS scripts after DOM is ready
                 const loadScript = (src, callback) => {
                   const existingScript = document.querySelector(`script[src="${src}"]`);
                   if (existingScript) {
+                    console.log(`Script ${src} already loaded`);
                     if (callback) callback();
                     return;
                   }
                   
                   const script = document.createElement('script');
                   script.src = src;
-                  script.onload = callback;
-                  script.onerror = () => console.error(`Failed to load script: ${src}`);
+                  script.onload = () => {
+                    console.log(`Script loaded: ${src}`);
+                    if (callback) callback();
+                  };
+                  script.onerror = () => {
+                    console.error(`Failed to load script: ${src}`);
+                    if (callback) callback(); // Continue even if one fails
+                  };
                   document.body.appendChild(script);
                 };
                 
                 // Load scripts sequentially
+                console.log('Starting to load scripts...');
                 loadScript('/darkpulse-lp/js/common.js', () => {
                   loadScript('/darkpulse-lp/js/parallax.js', () => {
                     loadScript('/darkpulse-lp/js/main.js', () => {
@@ -234,13 +279,13 @@ function LandingPage() {
                                       const line = document.createElement('div');
                                       line.classList.add('glowing-image');
                                       const lineHeight = Math.random() * (maxHeight - minHeight) + minHeight;
-                                      line.style.height = \`\${lineHeight}px\`;
+                                      line.style.height = lineHeight + 'px';
                                       const topPosition = Math.random() * 420;
-                                      line.style.top = \`\${topPosition}px\`;
+                                      line.style.top = topPosition + 'px';
                                       const glowDuration = Math.random() * 2 + 2;
                                       const shineDuration = Math.random() * 2 + 3;
                                       const moveDuration = Math.random() + 1;
-                                      line.style.animation = \`glow \${glowDuration}s infinite ease-in-out, shine \${shineDuration}s infinite linear, move \${moveDuration}s infinite alternate\`;
+                                      line.style.animation = 'glow ' + glowDuration + 's infinite ease-in-out, shine ' + shineDuration + 's infinite linear, move ' + moveDuration + 's infinite alternate';
                                       glowBg.appendChild(line);
                                     }
                                   }
@@ -268,9 +313,30 @@ function LandingPage() {
                     });
                   });
                 });
-              }, 100);
+              }, 150); // Additional delay to ensure DOM is fully ready
+            };
+            
+            // Start waiting for DOM and loading scripts
+            requestAnimationFrame(() => {
+              waitForDOMAndLoadScripts();
             });
-          }
+        }; // End of injectContent function
+        
+        // Check if CSS is already loaded, if not load it
+        const existingLink = document.querySelector(`link[href="${cssHref}"]`);
+        if (!existingLink) {
+          const newLink = document.createElement('link');
+          newLink.rel = 'stylesheet';
+          newLink.href = cssHref;
+          newLink.type = 'text/css';
+          document.head.appendChild(newLink);
+          
+          // Wait for CSS to load before injecting content
+          newLink.onload = () => {
+            injectContent();
+          };
+        } else {
+          injectContent();
         }
       } catch (error) {
         console.error('Error loading landing page:', error);

@@ -18,6 +18,10 @@ const travelyOprations = {
   hederMenuLineAnimation: function () {
     let _self = this;
     const mainMenu = document.querySelector(this.selectors.headerMenu);
+    if (!mainMenu) {
+      console.warn('Menu element not found:', this.selectors.headerMenu);
+      return;
+    }
 
     mainMenu.insertAdjacentHTML(
       "beforeend",

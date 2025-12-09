@@ -3,7 +3,7 @@ import Header from "./include/Header/Header";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./include/Main/Main";
-import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/LandingPageReact";
 
 function MainApp() {
   const [menu, setMenu] = useState(false);
