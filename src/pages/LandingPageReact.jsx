@@ -450,7 +450,7 @@ function LandingPageReact() {
             <ul>
               <li>
                 <h3>TRADING TAX</h3>
-                <h4>2%</h4>
+                <h4>0%</h4>
               </li>
               <li>|</li>
               <li>
