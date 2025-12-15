@@ -1,6 +1,7 @@
 import Card from "../Card/card";
 import axios from "axios";
 import { DigoIcon } from "../../icons/icons";
+import { API_ENDPOINTS } from "../../config/api.js";
 import stratigy from "../../assets/BlackLemon_Strategies.png"
 import Button from "../../uielement/Button";
 import chtImg from "../../assets/chat.png"
@@ -9,7 +10,7 @@ function StrategiesDetails() {
   const [marketData, setMarketData] = useState([])
 
   const fetchMarketData = async () => {
-    const res = await axios.get('http://localhost:5500/api/get-strategy')
+    const res = await axios.get(API_ENDPOINTS.GET_STRATEGY)
     setMarketData(res?.data?.strategy)
     console.log("res-->", res?.data?.strategy);
   }

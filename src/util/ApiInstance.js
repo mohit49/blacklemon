@@ -1,10 +1,11 @@
 // src/utils/axiosInstance.js
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api.js';
+
 const authToken = 'YWRtaW46YWRtaW4=';
 // Create an Axios instance with default configuration
 const axiosInstance = axios.create({
-  // baseURL: 'https://darkpulse.app/api',  // Replace with your API base URL
-  baseURL: 'http://localhost:5500/api',  // Replace with your API base URL
+  baseURL: API_BASE_URL,
   'accept': 'application/json',         // Accept header for JSON response
   'Authorization': `Basic ${authToken}`  
 });

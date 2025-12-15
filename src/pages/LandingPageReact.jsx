@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { getCookie } from '../util/cookieUtils';
 import Tnc from '../components/tnc';
 import '../styles/landing-page.css';
@@ -256,6 +256,7 @@ function LandingPageReact() {
               </a>
             </li>
           </ul>
+          <Link to="/login" className="login-btn poppins-bold">LOGIN</Link>
         </div>
       </header>
 

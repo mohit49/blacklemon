@@ -9,6 +9,7 @@ import DropDownSelect from "../uielement/DropDownSelect";
 import Popmsg from '../uielement/Popmsg';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_ENDPOINTS } from "../config/api.js";
 
 function Bots() {
   const naviage = useNavigate()
@@ -143,7 +144,7 @@ function Bots() {
   let average = true;
 
   const getBotAccount = async () => {
-    const response = await axios.get('http://localhost:5500/api/bot-get')
+    const response = await axios.get(API_ENDPOINTS.BOT_GET)
     setGetBotInfo(response.data)
     console.log('responsedat', response.data);
 
@@ -166,7 +167,7 @@ function Bots() {
 
 
   const botStart = async (id) => {
-    const response = await axios.post('http://localhost:5500/api/bot-start', { id })
+    const response = await axios.post(API_ENDPOINTS.BOT_START, { id })
 
     console.log('response-->', response?.data);
     setHash(response?.data.text)
@@ -176,7 +177,7 @@ function Bots() {
   }
 
   const botStop = async (id) => {
-    const response = await axios.post('http://localhost:5500/api/bot-stop', { id })
+    const response = await axios.post(API_ENDPOINTS.BOT_STOP, { id })
     setState(!state)
   }
 

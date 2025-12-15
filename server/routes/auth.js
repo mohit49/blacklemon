@@ -4,6 +4,7 @@ import process from 'process';
 import passport from 'passport';
 import validator from 'validator'; // Install this package using: npm install validator
 import crypto from 'crypto';
+import mongoose from 'mongoose';
 
 
 import User from '../models/user.js';
@@ -66,6 +67,12 @@ router.post('/signup', async (req, res) => {
   }
 
   try {
+    // Check MongoDB connection
+    if (mongoose.connection.readyState !== 1) {
+      console.error('MongoDB not connected. Connection state:', mongoose.connection.readyState);
+      return res.status(500).json({ error: 'Database connection error. Please try again later.' });
+    }
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ error: 'Email is already in use.' });
@@ -92,8 +99,18 @@ router.post('/signup', async (req, res) => {
 
     res.status(201).json({ message: 'User registered successfully. You can now login.' });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error('Signup error:', error);
+    // Provide more specific error messages
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ error: error.message });
+    }
+    if (error.code === 11000) {
+      return res.status(400).json({ error: 'Email is already in use.' });
+    }
+    if (error.message) {
+      console.error('Error details:', error.message);
+    }
+    res.status(500).json({ error: 'Internal Server Error', details: process.env.NODE_ENV === 'development' ? error.message : undefined });
   }
 });
 
@@ -105,14 +122,24 @@ router.post('/login', async (req, res) => {
   if (!email || !password) {
     return res.status(400).json({ error: 'Email and password are required.' });
   }
+  
+  // Get JWT_SECRET with fallback
+  const jwtSecret = process.env.JWT_SECRET || 'darkpulse-secret-key-2025-production-change-this';
+  
+  if (!jwtSecret) {
+    console.error('JWT_SECRET is not set in environment variables');
+    return res.status(500).json({ error: 'Server configuration error. Please contact administrator.' });
+  }
+  
   try {
     const user = await User.findOne({ email });
     if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({ error: 'Invalid email or password' });
     }
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id }, jwtSecret, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
+    console.error('Login error:', error);
     res.status(500).json({ error: error.message });
   }
 });

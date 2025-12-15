@@ -4,6 +4,7 @@ import { TextField, Typography, Box, Container } from '@mui/material';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from "../uielement/Button";
 import { getCookie } from "../util/cookieUtils";
+import { API_ENDPOINTS } from "../config/api.js";
 
 function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -26,7 +27,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('http://localhost:5500/auth/login', form);
+      const { data } = await axios.post(API_ENDPOINTS.LOGIN, form);
       localStorage.setItem('token', data.token);
       window.location.href = '/dashboard'; // Redirect after login
     } catch (err) {
@@ -35,7 +36,7 @@ function Login() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:5500/auth/google';
+    window.location.href = API_ENDPOINTS.GOOGLE_AUTH;
   };
 
   return (

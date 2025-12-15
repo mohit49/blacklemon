@@ -7,6 +7,7 @@ import axios from 'axios';
 import Popmsg from '../uielement/Popmsg';
 import DropDownSelect from '../uielement/DropDownSelect';
 import { useNavigate } from 'react-router-dom';
+import { API_ENDPOINTS } from "../config/api.js";
 
 function PpmSimple() {
 
@@ -169,7 +170,7 @@ function PpmSimple() {
     if (botName && profit && size && !isNaN(numberSize) && !isNaN(profitSize) && !isNaN(spreadSize) && tradingValue && connectorValue) {
       console.log("sar");
 
-      const response = await axios.post('http://localhost:5500/api/bot-config',
+      const response = await axios.post(API_ENDPOINTS.BOT_CONFIG,
         {
           botName,
           connectorValue,

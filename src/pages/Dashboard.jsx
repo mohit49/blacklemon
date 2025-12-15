@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import TradingView from "../components/TradingView/TradingView";
 import { useSelector } from "react-redux";
+import { API_ENDPOINTS } from "../config/api.js";
 import { getCookie } from "../util/cookieUtils";
 
 function Dashboard() {
@@ -38,7 +39,7 @@ function Dashboard() {
   const getAccount = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5500/api/bot-get')
+      const response = await axios.get(API_ENDPOINTS.BOT_GET)
       setGetBotInfo(response.data || [])
       const bot = response?.data || []
       const formData = bot?.map((item) => ((!item.status) ? {

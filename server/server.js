@@ -11,6 +11,12 @@ import mainRoutes from './routes/main.js'
 
 dotenv.config();
 
+// Verify critical environment variables
+if (!process.env.JWT_SECRET) {
+  console.error('WARNING: JWT_SECRET is not set in environment variables!');
+  console.error('JWT_SECRET from env:', process.env.JWT_SECRET);
+}
+
 const app = express();
 
 // Middleware
@@ -26,9 +32,23 @@ app.use('/auth', authRoutes);
 app.use('/api', mainRoutes)
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Error connecting to MongoDB:', err));
+const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
+if (!mongoUri) {
+  console.error('MongoDB URI not found in environment variables');
+} else {
+  mongoose.connect(mongoUri, {
+    serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+    socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
+  })
+    .then(() => {
+      console.log('Connected to MongoDB');
+      console.log('Database:', mongoose.connection.db.databaseName);
+    })
+    .catch(err => {
+      console.error('Error connecting to MongoDB:', err.message);
+      // Don't exit process, but log the error
+    });
+}
 
 const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

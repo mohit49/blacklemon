@@ -9,6 +9,7 @@ import PopOut from "../uielement/PopOut";
 // import StrategiesDetails from '../components/StratigyDetails/StratigyDetails';
 import { DigoIcon } from "../icons/icons";
 import axios from 'axios';
+import { API_ENDPOINTS } from "../config/api.js";
 
 
 
@@ -23,7 +24,7 @@ function Strategies() {
   const [id, setId] = useState('')
 
   const fetchMarketData = async () => {
-    const res = await axios.get('http://localhost:5500/api/get-strategy')
+    const res = await axios.get(API_ENDPOINTS.GET_STRATEGY)
     setMarketData(res?.data?.strategy)
   }
 

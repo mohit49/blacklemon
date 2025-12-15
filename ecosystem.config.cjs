@@ -12,6 +12,9 @@ module.exports = {
       env: {
         NODE_ENV: 'production',
         PORT: 5500,
+        MONGODB_URI: 'mongodb://localhost:27017/darkpulse',
+        MONGO_URI: 'mongodb://localhost:27017/darkpulse',
+        JWT_SECRET: 'darkpulse-secret-key-2025-production-change-this',
       },
       error_file: './logs/backend-error.log',
       out_file: './logs/backend-out.log',

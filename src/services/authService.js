@@ -1,7 +1,6 @@
 import axios from 'axios';
+import { API_ENDPOINTS } from '../config/api.js';
 
-const API_URL = 'http://localhost:5500/auth';
+export const signup = (email, password) => axios.post(API_ENDPOINTS.SIGNUP, { email, password });
 
-export const signup = (email, password) => axios.post(`${API_URL}/signup`, { email, password });
-
-export const login = (email, password) => axios.post(`${API_URL}/login`, { email, password });
+export const login = (email, password) => axios.post(API_ENDPOINTS.LOGIN, { email, password });
