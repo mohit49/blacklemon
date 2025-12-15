@@ -213,6 +213,23 @@ header .main-logo img {
 .social-icons li a img {
   width: 100%;
 }
+.login-btn {
+  background: #28d7a6;
+  color: #0e0e0e;
+  text-decoration: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  margin-left: 20px;
+}
+.login-btn:hover {
+  background: #2ad4a8;
+  box-shadow: #28d7a6 0 0 10px 3px;
+  transform: translateY(-2px);
+}
 .hero-section {
   width: 100%;
   display: flex;
@@ -886,6 +903,11 @@ footer p {
   header .top-navigation ul a {
     font-size: 20px;
   }
+  .login-btn {
+    margin-left: 15px;
+    padding: 8px 20px;
+    font-size: 11px;
+  }
   .content-area {
     width: 680px;
   }
@@ -985,6 +1007,11 @@ footer p {
   }
   header .top-navigation-content ul.social-icons {
     display: none;
+  }
+  .login-btn {
+    margin-left: 10px;
+    padding: 8px 15px;
+    font-size: 11px;
   }
   header .top-navigation {
     width: 100%;
